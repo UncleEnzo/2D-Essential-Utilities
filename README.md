@@ -5,14 +5,21 @@ Thank you for downloading the 2D Essential Utils package. I hope this package ju
 journey in 2D game development. The code for this package is heavily commented on, so this
 document will act as a high level overview of the package features and why you want to use
 them.
+
 Features:
+
 ● Example Scene to demonstrate how the event system and Global Persistent Values can
 be implemented
+
 ● An Event System that supports void and various parameter signatures
+
 ● Global Persistent Values stored outside of your scenes which can also be reset on scene
 load
+
 ● Global Persistent Lists stored outside of your scenes, which can be reset on scene load
+
 ● Unity Utility methods that I commonly use in my 2D projects
+
 ● Unity Extension methods to make working with a 3D-oriented engine easier for 2D
 developers
 

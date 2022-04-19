@@ -1,0 +1,19 @@
+{
+    "name": "Com.Nevelson.2DEssentialUtilities.TestMocks",
+    "rootNamespace": "",
+    "references": [
+        "GUID:213cb3b80beb19946ad3845399f38eff"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "NSubstitute.dll",
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

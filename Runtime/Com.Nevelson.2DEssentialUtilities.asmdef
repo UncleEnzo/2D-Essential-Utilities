@@ -1,9 +1,8 @@
 {
-    "name": "NewAssembly",
+    "name": "Com.Nevelson.2DEssentialUtilities",
     "rootNamespace": "",
     "references": [
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:74f291e5b24108b4c8f23aa2844f6e86"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

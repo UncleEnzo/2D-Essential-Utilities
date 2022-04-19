@@ -1,10 +1,10 @@
 {
-    "name": "PlaymodeTests",
+    "name": "Com.Nevelson.2DEssentialUtilities.RuntimeTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Scripts"
+        "Com.Nevelson.2DEssentialUtilities"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

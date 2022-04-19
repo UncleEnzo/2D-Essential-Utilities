@@ -1,8 +1,5 @@
 using NUnit.Framework;
 using System.Collections;
-using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEditor.TestTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;

@@ -1,10 +1,10 @@
 {
-    "name": "Tests",
+    "name": "Com.Nevelson.2DEssentialUtils.EditorTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Scripts"
+        "Com.Nevelson.2DEssentialUtilities"
     ],
     "includePlatforms": [
         "Editor"

@@ -6,6 +6,58 @@ namespace Nevelson.Utils
     public static class ExtTransform
     {
         /// <summary>
+        /// Takes a list of transforms and returns the one that's closest to this transform.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="transforms"></param>
+        /// <returns></returns>
+        public static Transform GetClosest(this Transform t, List<Transform> transforms)
+        {
+            if (transforms.Count <= 0)
+            {
+                Debug.LogWarning("No Transforms supplied");
+                return null;
+            }
+
+            Transform closest = transforms[0];
+            foreach (var trans in transforms)
+            {
+                if (Vector2.Distance(trans.Position2D(), t.Position2D()) <
+                    Vector2.Distance(closest.Position2D(), t.Position2D()))
+                {
+                    closest = trans;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
+        /// Takes a list of Vectors and returns the one closest to this transform.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="vectors"></param>
+        /// <returns></returns>
+        public static Vector2 GetClosest(this Transform t, List<Vector2> vectors)
+        {
+            if (vectors.Count <= 0)
+            {
+                Debug.LogWarning("No Transforms supplied");
+                return Vector2.zero;
+            }
+
+            Vector2 closest = vectors[0];
+            foreach (var vector in vectors)
+            {
+                if (Vector2.Distance(vector, t.Position2D()) <
+                    Vector2.Distance(closest, t.Position2D()))
+                {
+                    closest = vector;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
         /// Rotates the transform to look at the target world position
         /// </summary>
         /// <param name="t"></param>

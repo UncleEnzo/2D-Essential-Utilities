@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using static Nevelson.Utils.Enums;
 using static Nevelson.Utils.RODicts;
 
@@ -6,6 +7,58 @@ namespace Nevelson.Utils
 {
     public static class ExtVector2
     {
+        /// <summary>
+        /// Takes a list of transforms and returns the one that is closest to the this vector2.
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="transforms"></param>
+        /// <returns></returns>
+        public static Transform GetClosest(this Vector2 v, List<Transform> transforms)
+        {
+            if (transforms.Count <= 0)
+            {
+                Debug.LogWarning("No Transforms supplied");
+                return null;
+            }
+
+            Transform closest = transforms[0];
+            foreach (var trans in transforms)
+            {
+                if (Vector2.Distance(trans.Position2D(), v) <
+                    Vector2.Distance(closest.Position2D(), v))
+                {
+                    closest = trans;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
+        /// Takes a list of Vectors and returns the one closest to this vector.
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="vectors"></param>
+        /// <returns></returns>
+        public static Vector2 GetClosest(this Vector2 v, List<Vector2> vectors)
+        {
+            if (vectors.Count <= 0)
+            {
+                Debug.LogWarning("No Transforms supplied");
+                return Vector2.zero;
+            }
+
+            Vector2 closest = vectors[0];
+            foreach (var vector in vectors)
+            {
+                if (Vector2.Distance(vector, v) <
+                    Vector2.Distance(closest, v))
+                {
+                    closest = vector;
+                }
+            }
+            return closest;
+        }
+
         /// <summary>
         /// Rotates the vector2 by the supplied amount of degrees.
         /// </summary>

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Nevelson.Utils
@@ -43,6 +44,87 @@ namespace Nevelson.Utils
             {
                 action();
             }
+        }
+
+        /// <summary>
+        /// Takes a list of gameobjects and returns the one that's closest to this gameobject.
+        /// Will return first on the list if there are multiple values at the same distance.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="transforms"></param>
+        /// <returns></returns>
+        public static GameObject GetClosest(this GameObject g, List<GameObject> gameObjects)
+        {
+            if (gameObjects.Count <= 0)
+            {
+                Debug.LogWarning("No GameObjects supplied");
+                return null;
+            }
+
+            GameObject closest = gameObjects[0];
+            foreach (var gameObject in gameObjects)
+            {
+                if (Vector2.Distance(gameObject.transform.Position2D(), g.transform.Position2D()) <
+                    Vector2.Distance(closest.transform.Position2D(), g.transform.Position2D()))
+                {
+                    closest = gameObject;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
+        /// Takes a list of transforms and returns the one that's closest to this gameobject.
+        /// Will return first on the list if there are multiple values at the same distance.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="transforms"></param>
+        /// <returns></returns>
+        public static Transform GetClosest(this GameObject g, List<Transform> transforms)
+        {
+            if (transforms.Count <= 0)
+            {
+                Debug.LogWarning("No Transforms supplied");
+                return null;
+            }
+
+            Transform closest = transforms[0];
+            foreach (var trans in transforms)
+            {
+                if (Vector2.Distance(trans.Position2D(), g.transform.Position2D()) <
+                    Vector2.Distance(closest.Position2D(), g.transform.Position2D()))
+                {
+                    closest = trans;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
+        /// Takes a list of Vectors and returns the one closest to this gameobject.
+        /// Will return first on the list if there are multiple values at the same distance.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="vectors"></param>
+        /// <returns></returns>
+        public static Vector2 GetClosest(this GameObject g, List<Vector2> vectors)
+        {
+            if (vectors.Count <= 0)
+            {
+                Debug.LogWarning("No Vectors supplied");
+                return Vector2.zero;
+            }
+
+            Vector2 closest = vectors[0];
+            foreach (var vector in vectors)
+            {
+                if (Vector2.Distance(vector, g.transform.Position2D()) <
+                    Vector2.Distance(closest, g.transform.Position2D()))
+                {
+                    closest = vector;
+                }
+            }
+            return closest;
         }
     }
 }

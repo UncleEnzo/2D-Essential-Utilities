@@ -6,7 +6,35 @@ namespace Nevelson.Utils
     public static class ExtTransform
     {
         /// <summary>
+        /// Takes a list of gameobjects and returns the one that's closest to this transform. 
+        /// Will return first on the list if there are multiple values at the same distance.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="transforms"></param>
+        /// <returns></returns>
+        public static GameObject GetClosest(this Transform t, List<GameObject> gameObjects)
+        {
+            if (gameObjects.Count <= 0)
+            {
+                Debug.LogWarning("No GameObjects supplied");
+                return null;
+            }
+
+            GameObject closest = gameObjects[0];
+            foreach (var gameObject in gameObjects)
+            {
+                if (Vector2.Distance(gameObject.transform.Position2D(), t.Position2D()) <
+                    Vector2.Distance(closest.transform.Position2D(), t.Position2D()))
+                {
+                    closest = gameObject;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
         /// Takes a list of transforms and returns the one that's closest to this transform.
+        /// Will return first on the list if there are multiple values at the same distance.
         /// </summary>
         /// <param name="t"></param>
         /// <param name="transforms"></param>
@@ -33,6 +61,7 @@ namespace Nevelson.Utils
 
         /// <summary>
         /// Takes a list of Vectors and returns the one closest to this transform.
+        /// Will return first on the list if there are multiple values at the same distance.
         /// </summary>
         /// <param name="t"></param>
         /// <param name="vectors"></param>
@@ -41,7 +70,7 @@ namespace Nevelson.Utils
         {
             if (vectors.Count <= 0)
             {
-                Debug.LogWarning("No Transforms supplied");
+                Debug.LogWarning("No Vectors supplied");
                 return Vector2.zero;
             }
 

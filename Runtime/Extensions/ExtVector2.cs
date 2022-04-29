@@ -8,7 +8,35 @@ namespace Nevelson.Utils
     public static class ExtVector2
     {
         /// <summary>
+        /// Takes a list of GameObjects and returns the one that is closest to the this vector2.
+        /// Will return first on the list if there are multiple values at the same distance.
+        /// </summary>
+        /// <param name="v"></param>
+        /// <param name="gameObjects"></param>
+        /// <returns></returns>
+        public static GameObject GetClosest(this Vector2 v, List<GameObject> gameObjects)
+        {
+            if (gameObjects.Count <= 0)
+            {
+                Debug.LogWarning("No GameObjects supplied");
+                return null;
+            }
+
+            GameObject closest = gameObjects[0];
+            foreach (var gameObject in gameObjects)
+            {
+                if (Vector2.Distance(gameObject.transform.Position2D(), v) <
+                    Vector2.Distance(closest.transform.Position2D(), v))
+                {
+                    closest = gameObject;
+                }
+            }
+            return closest;
+        }
+
+        /// <summary>
         /// Takes a list of transforms and returns the one that is closest to the this vector2.
+        /// Will return first on the list if there are multiple values at the same distance.
         /// </summary>
         /// <param name="v"></param>
         /// <param name="transforms"></param>
@@ -35,6 +63,7 @@ namespace Nevelson.Utils
 
         /// <summary>
         /// Takes a list of Vectors and returns the one closest to this vector.
+        /// Will return first on the list if there are multiple values at the same distance.
         /// </summary>
         /// <param name="v"></param>
         /// <param name="vectors"></param>
@@ -43,7 +72,7 @@ namespace Nevelson.Utils
         {
             if (vectors.Count <= 0)
             {
-                Debug.LogWarning("No Transforms supplied");
+                Debug.LogWarning("No Vectors supplied");
                 return Vector2.zero;
             }
 

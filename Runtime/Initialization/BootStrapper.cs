@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Nevelson.Utils
 {
@@ -12,12 +13,14 @@ namespace Nevelson.Utils
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void ExecuteBeforeSceneLoad()
         {
-            Debug.Log("Bootstrapper Resetting All Resettable Scriptable Objects");
-            ResettableSO[] resettableSOs = Resources.LoadAll<ResettableSO>("/");
-            foreach (ResettableSO resettable in resettableSOs)
+            Object systems = Resources.Load("Systems");
+            if(systems == null)
             {
-                resettable.Reset();
+                Debug.LogError("Could not find the systems gameobject in resources folder.  Copy the Systems Gameobject from Packages > 2D Essential Utilities > Runtime > ResourceObjects > Systems into the top level of your resources folder");
+                return;
             }
+
+            Object.DontDestroyOnLoad(Object.Instantiate(systems));
         }
     }
 }

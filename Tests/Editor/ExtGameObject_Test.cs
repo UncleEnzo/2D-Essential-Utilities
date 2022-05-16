@@ -7,6 +7,33 @@ namespace Nevelson.Utils
     public class ExtGameObject_Test
     {
         [Test]
+        public void Test_AddCopiedComponent()
+        {
+            GameObject go = new GameObject();
+            Rigidbody2D rb = go.AddComponent<Rigidbody2D>();
+            rb.gravityScale = -12;
+            rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
+            rb.velocity = new Vector2(345, 913);
+
+            GameObject destinationGO = new GameObject();
+
+            //Test returned component
+            Rigidbody2D myDestinationRB = destinationGO.AddCopiedComponent(go.GetComponent<Rigidbody2D>());
+            Assert.AreEqual(-12, myDestinationRB.gravityScale);
+            Assert.AreEqual(RigidbodySleepMode2D.NeverSleep, myDestinationRB.sleepMode);
+            Assert.AreEqual(new Vector2(345, 913), myDestinationRB.velocity);
+
+            //Test attached component
+            Rigidbody2D attachedRB = destinationGO.GetComponent<Rigidbody2D>();
+            Assert.AreEqual(-12, attachedRB.gravityScale);
+            Assert.AreEqual(RigidbodySleepMode2D.NeverSleep, attachedRB.sleepMode);
+            Assert.AreEqual(new Vector2(345, 913), attachedRB.velocity);
+
+            GameObject.DestroyImmediate(go);
+            GameObject.DestroyImmediate(destinationGO);
+        }
+
+        [Test]
         public void Test_GetClosest_GameObject()
         {
             GameObject go = new GameObject();

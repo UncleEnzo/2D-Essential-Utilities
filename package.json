@@ -1,6 +1,6 @@
 {
   "name": "com.nevelson.2d-essential-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "2D Essential Utilities",
   "description": "A lightweight package full of essential 2D extensions, utility classes, and scriptable objects.",
   "unity": "2020.3",

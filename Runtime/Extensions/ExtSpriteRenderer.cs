@@ -9,7 +9,7 @@ namespace Nevelson.Utils
         /// </summary>
         /// <param name="spriteRenderer"></param>
         /// <param name="lookAtPoint"></param>
-        public static bool OrientZeroPreferRight(this SpriteRenderer spriteRenderer, Vector2 lookAtPoint)
+        public static bool OrientZeroPreferDir(this SpriteRenderer spriteRenderer, Vector2 lookAtPoint, bool isDefaultRight = true)
         {
             if (lookAtPoint == null)
             {
@@ -19,11 +19,11 @@ namespace Nevelson.Utils
             float dirX = lookAtPoint.x - spriteRenderer.transform.Position2D().x;
             if (dirX >= 0)
             {
-                return spriteRenderer.flipX = false;
+                return spriteRenderer.flipX = !isDefaultRight;
             }
             else
             {
-                return spriteRenderer.flipX = true;
+                return spriteRenderer.flipX = isDefaultRight;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Nevelson.Utils
         /// </summary>
         /// <param name="spriteRenderer"></param>
         /// <param name="lookAtPoint"></param>
-        public static bool OrientNoDirZeroPreference(this SpriteRenderer spriteRenderer, Vector2 lookAtPoint)
+        public static bool OrientNoDirZeroPreference(this SpriteRenderer spriteRenderer, Vector2 lookAtPoint, bool isDefaultRight = true)
         {
             if (lookAtPoint == null)
             {
@@ -42,11 +42,11 @@ namespace Nevelson.Utils
             float dirX = lookAtPoint.x - spriteRenderer.transform.Position2D().x;
             if (dirX > 0)
             {
-                return spriteRenderer.flipX = false;
+                return spriteRenderer.flipX = !isDefaultRight;
             }
             else if (dirX < 0)
             {
-                return spriteRenderer.flipX = true;
+                return spriteRenderer.flipX = isDefaultRight;
             }
             else
             {

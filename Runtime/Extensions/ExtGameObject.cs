@@ -142,6 +142,14 @@ namespace Nevelson.Utils
             return closest;
         }
 
+        /// <summary>
+        /// Copies an original component and applies its field values to the copy.
+        /// Applying fields does not work on compiled getter setters.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="original"></param>
+        /// <param name="destination"></param>
+        /// <returns></returns>
         private static T GetCopyOf<T>(this Component comp, T other) where T : Component
         {
             Type type = comp.GetType();

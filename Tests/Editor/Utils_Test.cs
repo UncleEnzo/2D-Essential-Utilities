@@ -193,40 +193,6 @@ namespace Nevelson.Utils
         }
 
         [Test]
-        public void Test_CopyComponent()
-        {
-            string expectedStr = "New String";
-            GameObject sourceGO = new GameObject("Source");
-            GameObject targetGO = new GameObject("Target");
-            MockComponent sourceMock = sourceGO.AddComponent<MockComponent>();
-
-            sourceMock.MockStringField = expectedStr;
-            sourceMock.MockStringGetterSetter = expectedStr;
-            sourceMock.MockStringGetterSetterWithRef = expectedStr;
-            Assert.AreEqual(expectedStr, sourceMock.MockStringField);
-            Assert.AreEqual(expectedStr, sourceMock.MockStringGetterSetter);
-            Assert.AreEqual(expectedStr, sourceMock.MockStringGetterSetterWithRef);
-
-            MockComponent copy = Utils.CopyComponent(sourceMock, targetGO);
-            Assert.NotNull(copy);
-            Assert.NotNull(targetGO.GetComponent<MockComponent>());
-
-            Assert.AreEqual(expectedStr, targetGO.GetComponent<MockComponent>().MockStringField);
-            Assert.AreEqual(expectedStr, copy.MockStringField);
-
-            //does not work with compiled getter/setter
-            Assert.AreNotEqual(expectedStr, targetGO.GetComponent<MockComponent>().MockStringGetterSetterWithRef);
-            Assert.AreNotEqual(expectedStr, copy.MockStringGetterSetterWithRef);
-
-            //does not work with compiled getter/setter
-            Assert.AreNotEqual(expectedStr, targetGO.GetComponent<MockComponent>().MockStringGetterSetter);
-            Assert.AreNotEqual(expectedStr, copy.MockStringGetterSetter);
-
-            GameObject.DestroyImmediate(sourceGO);
-            GameObject.DestroyImmediate(targetGO);
-        }
-
-        [Test]
         public void Test_FindComponentsOfType()
         {
             GameObject roGO = new GameObject("Random Object");

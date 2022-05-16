@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -95,26 +96,6 @@ namespace Nevelson.Utils
                     sb.Append(c);
             }
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Copies an original component and applies its field values to the copy.
-        /// Applying fields does not work on compiled getter setters.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="original"></param>
-        /// <param name="destination"></param>
-        /// <returns></returns>
-        public static T CopyComponent<T>(T original, GameObject destination) where T : Component
-        {
-            Type type = original.GetType();
-            Component copy = destination.AddComponent(type);
-            System.Reflection.FieldInfo[] fields = type.GetFields();
-            foreach (System.Reflection.FieldInfo field in fields)
-            {
-                field.SetValue(copy, field.GetValue(original));
-            }
-            return copy as T;
         }
 
         /// <summary>
